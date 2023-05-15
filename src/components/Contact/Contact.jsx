@@ -1,8 +1,10 @@
 "use client";
+import { useTranslation } from "@/app/i18n";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const Contact = () => {
+const Contact = async ({ data, lang }) => {
+  const { t } = await useTranslation(lang);
   const initialValues = {
     name: "",
     email: "",
@@ -22,7 +24,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <h1 className="text-blue-800 text-center text-4xl">Get In Touch</h1>
+      <h1 className="text-blue-800 text-center text-4xl">{t("formTitle")}</h1>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <Formik
@@ -32,29 +34,31 @@ const Contact = () => {
           >
             {({ isSubmitting }) => (
               <Form>
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Name
-                  </label>
-                  <div className="mt-1">
-                    <Field
-                      type="text"
-                      name="name"
-                      id="name"
-                      className="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                    />
-                    <ErrorMessage
-                      name="name"
-                      component="div"
-                      className="text-red-500 text-sm mt-1"
-                    />
+                {data?.fields?.map((field) => (
+                  <div>
+                    <label
+                      htmlFor={field.formField}
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      {field?.label}
+                    </label>
+                    <div className="mt-1">
+                      <Field
+                        type={field.type}
+                        name={field.formField}
+                        id={field.formField}
+                        className="shadow-sm border-[1px] p-4 outline-none block w-full sm:text-sm border-gray-300 rounded-md"
+                      />
+                      <ErrorMessage
+                        name={field.formField}
+                        component="div"
+                        className="text-red-500 text-sm mt-1"
+                      />
+                    </div>
                   </div>
-                </div>
+                ))}
 
-                <div className="mt-6">
+                {/* <div className="mt-6">
                   <label
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
@@ -97,7 +101,7 @@ const Contact = () => {
                       className="text-red-500 text-sm mt-1"
                     />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="mt-6">
                   <button

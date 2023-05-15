@@ -47,32 +47,28 @@ const servicedata = [
   },
 ];
 
-function Service() {
+function Service({ data }) {
   return (
     <section className="bg-[#fdfdfd] max-w-7xl min-h-[30px] mx-auto px-6">
       <div className="py-36 lg:grid lg:grid-cols-2">
         <div className="top-36 self-start lg:sticky">
           <h3 className="text-base font-semibold uppercase text-[#aab0bc]">
-            What We Do?
+            {data?.serviceTitle}
           </h3>
           <h2 className="text-4xl mb-6 font-semibold text-[#343f52]">
-            The service we offer is{" "}
+            {data?.serviceHeader}
+            {/* The service we offer is{" "}
             <span className="text-[#605dba] px-1 font-serif italic">
               specifically
             </span>
             <br />
-            designed to meet <br /> your needs.
+            designed to meet <br /> your needs. */}
           </h2>
-          <p className="mb-9 text-[17px]">
-            Cras mattis consectetur purus sit amet <br /> fermentum. Donec
-            ullamcorper nulla non metus <br /> auctor fringilla. Integer posuere
-            erat a ante <br />
-            venenatis dapibus posuere velit aliquet.
-          </p>
+          <p className="mb-9 text-[17px]">{data?.serviceDescription}</p>
         </div>
         <div>
           <div>
-            {servicedata.map((val) => (
+            {data?.data?.map((val, i) => (
               <div
                 key={val.id}
                 className="p-9 
@@ -80,7 +76,7 @@ function Service() {
               >
                 <div className="md:flex gap-x-8">
                   <div className="w-20 flex">
-                    <Image src={val.src} alt="#" className="" />
+                    <Image src={servicedata[i].src} alt="#" className="" />
                   </div>
                   <div>
                     <h3 className="text-[#343f52] mb-3 text-xl font-semibold">

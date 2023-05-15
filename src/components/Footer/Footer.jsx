@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import SocialIcon from "../../components/SocialIcon/SocialIcon";
 
-const Footer = () => {
+const Footer = ({ data: { footerData, serviceData } }) => {
   return (
     <section className="overflow-hidden px-4 py-20 sm:pl-16 bg-[#343f52]">
       <div className="flex flex-col md:flex-row py-8 gap-6">
@@ -14,7 +14,7 @@ const Footer = () => {
             width="119"
           />
           <div className="mb-10 text-white text-lg">
-            © Flux by{" "}
+            © {footerData?.title} by{" "}
             <a
               href="https://webflow.com/templates/designers/elemis"
               target="_blank"
@@ -24,48 +24,42 @@ const Footer = () => {
             </a>
             . <br />
             Powered by
-            <a href="https://webflow.com" target="_blank">
-              Webflow
+            <a href="https://thespecialcharacter.com" target="_blank">
+              The Special Character
             </a>
             .
           </div>
           <SocialIcon />
         </div>
         <div className="flex-1">
-          <h4 className="text-white mb-2 text-xl">Get in Touch</h4>
+          <h4 className="text-white mb-2 text-xl">{footerData?.slogan}</h4>
           <div className="mb-5 text-white text-base">
-            Moonshine St. 14/05 London, <br /> United Kingdom
+            {footerData?.address}
+            {/* Moonshine St. 14/05 London, <br /> United Kingdom */}
           </div>
           <a href="#" className="link-hover link-white text-white text-base">
-            info@email.com
+            {footerData?.email}
           </a>
-          <div className="text-white text-base">00 (123) 456 78 90</div>
+          <div className="text-white text-base">
+            {footerData?.personalContactNo}
+          </div>
         </div>
-        <div className="flex-1">
-          <h4 className="text-white mb-3 text-xl">Services</h4>
-          <ul className="">
-            <li className="mb-1">
-              <a href="#" className="text-white text-base">
-                Home
-              </a>
-            </li>
-            <li className="mb-1">
-              <a href="#" className="text-white text-base">
-                Services
-              </a>
-            </li>
-            <li className="mb-1">
-              <a href="#" className="text-white text-base">
-                Blog
-              </a>
-            </li>{" "}
-            <li className="mb-1">
-              <a href="#" className="text-white text-base">
-                Team
-              </a>
-            </li>
-          </ul>
-        </div>
+        {serviceData?.data?.length && (
+          <div className="flex-1">
+            <h4 className="text-white mb-3 text-xl">
+              {serviceData?.serviceTitle}
+            </h4>
+            <ul className="">
+              {serviceData?.data?.map((service) => (
+                <li className="mb-1">
+                  <a href="#" className="text-white text-base">
+                    {service?.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   );

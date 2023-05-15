@@ -1,19 +1,10 @@
-"use client";
-import React, { useState } from "react";
-import HamburgerIcon from "../../public/icons/hemburger.svg";
-import CloseIcon from "../../public/icons/closeicon.svg";
+import React from "react";
 import BannerLogo from "../../public/icons/bannerlogo.svg";
+import LanguageChange from "../ToggleLanguage";
+import { useTranslation } from "@/app/i18n";
 
-const NavigationBar = () => {
-  const [open, setOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setOpen(!open);
-  };
-
-  const closeMenu = () => {
-    setOpen(false);
-  };
+const NavigationBar = async ({ lang, data }) => {
+  const { t } = await useTranslation(lang);
 
   return (
     <section className="px-4 py-6 box-border">
@@ -21,6 +12,7 @@ const NavigationBar = () => {
         <div>
           <BannerLogo className="h-28 w-28" />
         </div>
+        <LanguageChange lang={lang} />
         {/* <div className="block lg:hidden">
         <button
           className="flex items-center px-3 py-2 border rounded text-white border-white hover:text-white hover:border-white"
@@ -34,9 +26,11 @@ const NavigationBar = () => {
         </button>
       </div> */}
         <div className="text-left lg:text-right">
-          <div className="text-lg text-blue-800">Contact: +012-345-6789</div>
+          <div className="text-lg text-blue-800">
+            {t("contact")}: {data?.contactNo}
+          </div>
           <label htmlFor="email" className="text-lg text-black">
-            Email: Example@gmail.com
+            {t("email")}: {data?.email}
           </label>
         </div>
       </div>

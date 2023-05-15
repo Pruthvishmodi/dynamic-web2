@@ -3,5 +3,10 @@
       "title": "Hi there!",
       "to-second-page": "To second page",
       "ourServices":"Our Services",
-      "serviceDesc":"Hundreds of reviews from our customers say so. Our in-house support team is friendly and professional and usually go out of the way to help you."
+      "serviceDesc":"Hundreds of reviews from our customers say so. Our in-house support team is friendly and professional and usually go out of the way to help you.",
+      "contact":"Contact",
+      "email":"Email",
+      "testimonialTitle":"Happy Customers",
+      "testimonialDec":"Dont take our word for it. See whatcustomers are saying about us",
+      "formTitle":"Get In Touch"
     }
